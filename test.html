@@ -8,7 +8,12 @@
     <script type="module">
       let member;
 
-      import { setMember, getMember, updateMember } from "./js/Firestore.js";
+      import {
+        setMember,
+        getMember,
+        updateMember,
+        deleteMember,
+      } from "./js/Firestore.js";
       document.getElementById("setBtn").addEventListener("click", () => {
         setMember({ test: "test" });
       });
@@ -26,8 +31,10 @@
         });
 
       document
-        .getElementById("deleteDoc")
-        .addEventListener("click", async () => {});
+        .getElementById("deleteBtn")
+        .addEventListener("click", async () => {
+          await deleteMember(id);
+        });
     </script>
   </head>
   <body>
