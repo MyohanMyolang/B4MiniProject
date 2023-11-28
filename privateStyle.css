@@ -1,0 +1,57 @@
+#aboutWrapper {
+  background-color: #0da9ff;
+  color: white;
+  height: 90dvh;
+  display: flex;
+  justify-content: center;
+  padding-top: 36px;
+}
+
+#aboutBox {
+  border: 2px solid;
+  padding: 24px;
+  height: 80dvh;
+  width: 90dvh;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-color: cyan;
+}
+
+#leftBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+#userImage {
+  border: 2px solid;
+  border-color: white;
+  border-radius: 100%;
+  width: 30dvh;
+  height: 30dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#userImageModify:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px gray;
+}
+
+.inputBox {
+  border: 0px;
+  background: none;
+  width: auto;
+  text-align: center;
+  outline: none;
+}
+
+.inputBoxModify {
+  border: 0px;
+  width: auto;
+  text-align: center;
+}
