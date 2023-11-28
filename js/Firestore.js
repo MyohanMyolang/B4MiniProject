@@ -52,7 +52,6 @@ export const getAllMember = async () => {
 }
 
 export const updateMember = async (id, data) => {
-  console.log(id);
   await updateDoc(doc(memberRef, id), data)
 }
 
