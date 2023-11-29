@@ -50,6 +50,7 @@
 }
 
 .commentsbox {
+    display: none;
     width: 500px;
     margin: 30px auto 30px auto;
     border-top: 1px solid grey;
@@ -74,8 +75,4 @@
 .btnbox {
     margin-top: 5px;
     text-align: right;
-}
-
-.confirmbtn {
-    display: none;
 }
