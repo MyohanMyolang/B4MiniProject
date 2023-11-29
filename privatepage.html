@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/privateStyle.css" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/styles/privateStyle.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
     <script type="module">
-      import { getMember, updateMember } from "./js/Firestore.js";
+      import { getMember, updateMember } from "./js/member.js";
 
       // init
       const inputBoxList = $(".inputBox");
@@ -26,11 +26,16 @@
       let updateData = {};
 
       (async () => {
-        const result = await getMember("name", "전창현");
-        if (result.data === null) {
-          //alert("저장된 데이터가 없습니다.");
+        // page 하나로 private page를 구성한다면 searchString을 사용하여 name부분을 가져올 수 있다. 관계형 DB일 경우 id를 사용한다.
+        info = await getMember("name", "전창현");
+        if (info.data === null) {
+          alert("저장된 데이터가 없습니다.");
           return;
         }
+        const keys = Object.keys(info.data);
+        keys.forEach((key) => {
+          document.getElementById(key).value = info.data[key];
+        });
       })();
 
       // end init
@@ -52,6 +57,7 @@
       };
 
       const updateInfo = async () => {
+        console.log(info.id);
         await updateMember(info.id, updateData);
 
         modChange();
@@ -62,6 +68,9 @@
         updateData[e.target.id] = e.target.value;
       };
       inputBoxList.blur(onBlurInput);
+
+      const onClickUpdateBtn = async () => {};
+      compBtn.click(onClickUpdateBtn);
 
       $("#modifyBtn").click(modChange);
     </script>
@@ -102,9 +111,7 @@
               style="height: 120px"
               class="inputBox"
               placeholder="자기소개"
-            >
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </textarea
-            >
+            ></textarea>
           </div>
           <div id="aboutDetail">
             <label for="goal">목표</label>
@@ -113,6 +120,8 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
             <textarea id="reason" class="inputBox"></textarea>
             <label for="finalgoal">최종 목표</label>
             <textarea id="finalgoal" class="inputBox"></textarea>
+            <label for="wantsay">하고싶은 말</label>
+            <textarea id="wantsay" class="inputBox"></textarea>
           </div>
         </div>
       </div>

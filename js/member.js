@@ -52,6 +52,7 @@ export const getAllMember = async () => {
 }
 
 export const updateMember = async (id, data) => {
+  console.log(id);
   id == null || id == undefined ? await setMember(data) :await updateDoc(doc(memberRef, id), data)
 }
 
