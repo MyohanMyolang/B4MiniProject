@@ -12,20 +12,56 @@
       crossorigin="anonymous"
     ></script>
     <script type="module">
+      import { getMember, updateMember } from "./js/Firestore.js";
+
+      // init
       const inputBoxList = $(".inputBox");
       inputBoxList.attr("readonly", true);
+      const compBtn = $("#completeModify");
+      compBtn.toggle();
+
+      let isModify = false;
+      let info;
+
+      let updateData = {};
+
+      (async () => {
+        const result = await getMember("name", "전창현");
+        if (result.data === null) {
+          //alert("저장된 데이터가 없습니다.");
+          return;
+        }
+      })();
+
+      // end init
 
       const modChange = () => {
+        isModify = !isModify;
         const isReadOnly = !inputBoxList.attr("readonly");
         if (isReadOnly) {
           inputBoxList.addClass("inputBox");
           inputBoxList.removeClass("inputBoxModify");
+          compBtn.toggle();
         } else {
           inputBoxList.addClass("inputBoxModify");
           inputBoxList.removeClass("inputBox");
+          compBtn.toggle();
+          updateData = {};
         }
         inputBoxList.attr("readonly", isReadOnly);
       };
+
+      const updateInfo = async () => {
+        await updateMember(info.id, updateData);
+
+        modChange();
+      };
+      compBtn.click(updateInfo);
+
+      const onBlurInput = (e) => {
+        updateData[e.target.id] = e.target.value;
+      };
+      inputBoxList.blur(onBlurInput);
 
       $("#modifyBtn").click(modChange);
     </script>
@@ -49,21 +85,34 @@
             </div>
             <input
               id="name"
-              value="가가"
+              value=""
+              style="font-size: 24px"
+              class="inputBox"
+              placeholder="이름"
+            />
+            <input
+              id="age"
+              value=""
+              placeholder="나이"
               style="font-size: 24px"
               class="inputBox"
             />
-            <input value="나나" style="font-size: 24px" class="inputBox" />
             <textarea
-              style="resize: none; overflow: hidden; height: 120px"
+              id="about"
+              style="height: 120px"
               class="inputBox"
+              placeholder="자기소개"
             >
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </textarea
             >
           </div>
           <div id="aboutDetail">
-            \
-            <div>가나다라</div>
+            <label for="goal">목표</label>
+            <textarea id="goal" class="inputBox"></textarea>
+            <label for="reason">코딩을 시작한 계기</label>
+            <textarea id="reason" class="inputBox"></textarea>
+            <label for="finalgoal">최종 목표</label>
+            <textarea id="finalgoal" class="inputBox"></textarea>
           </div>
         </div>
       </div>

@@ -40,6 +40,7 @@
   align-items: center;
   gap: 30px;
   border-color: cyan;
+  overflow: hidden;
 }
 
 #leftBox {
@@ -79,4 +80,22 @@
   border: 0px;
   width: auto;
   text-align: center;
+}
+
+#aboutDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+#aboutDetail > label {
+  font-size: 18px;
+  padding-bottom: 8px;
+}
+
+#aboutDetail > textarea {
+  height: 70px;
+  resize: none;
+  overflow: hidden;
+  margin-bottom: 14px;
+  min-width: 400px;
 }
