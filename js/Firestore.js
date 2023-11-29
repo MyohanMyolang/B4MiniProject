@@ -52,8 +52,7 @@ export const getAllMember = async () => {
 }
 
 export const updateMember = async (id, data) => {
-  console.log(id);
-  await updateDoc(doc(memberRef, id), data)
+  id == null || id == undefined ? await setMember(data) :await updateDoc(doc(memberRef, id), data)
 }
 
 export const deleteMember = async (id) => {

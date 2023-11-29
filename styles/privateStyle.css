@@ -7,6 +7,30 @@
   padding-top: 36px;
 }
 
+#contBtnWrapper {
+  padding-bottom: 24px;
+  padding-right: 24px;
+  background-color: #0da9ff;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+#contBtnWrapper > button {
+  background-color: cyan;
+  padding: 16px;
+  border-color: white;
+  margin: 0px;
+  border: 1px;
+}
+#contBtnWrapper > button:hover {
+  transform: translateY(-4px);
+}
+
+#contBtnWrapper > button:active {
+  transform: translateY(4px);
+}
+
 #aboutBox {
   border: 2px solid;
   padding: 24px;
@@ -16,6 +40,7 @@
   align-items: center;
   gap: 30px;
   border-color: cyan;
+  overflow: hidden;
 }
 
 #leftBox {
@@ -48,10 +73,29 @@
   width: auto;
   text-align: center;
   outline: none;
+  color: white;
 }
 
 .inputBoxModify {
   border: 0px;
   width: auto;
   text-align: center;
+}
+
+#aboutDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+#aboutDetail > label {
+  font-size: 18px;
+  padding-bottom: 8px;
+}
+
+#aboutDetail > textarea {
+  height: 70px;
+  resize: none;
+  overflow: hidden;
+  margin-bottom: 14px;
+  min-width: 400px;
 }
