@@ -40,12 +40,19 @@ export const getAllMember = async () => {
   const snap = await getDocs(memberRef);
   snap.forEach((doc) => {
     const name = doc.data()['name'];
+    let profileimg = doc.data()['profileimg'];
+
+     // profileimg가 null이면 기본 이미지를 사용합니다.
+     if (!profileimg) {
+      profileimg = 'https://i.pinimg.com/474x/2f/55/97/2f559707c3b04a1964b37856f00ad608.jpg'; // 여기에 기본 이미지 URL을 입력하세요.
+    }
+
 
     const temp_html = `
     <div class="col-lg-3">
       <a href="privatepage.html?name=${name}">
         <img class="rounded-circle" width="200" height="200"
-          src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202306/25/488f9638-800c-4bac-ad65-82877fbff79b.jpg" />
+          src="${profileimg}" />
         <h2 class="name">${name}</h2>
       </a>
     </div>

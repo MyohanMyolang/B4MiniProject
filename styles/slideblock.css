@@ -1,0 +1,36 @@
+/* 슬라이드css */
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.gallery {
+    background: #EEE;
+}
+
+.gallery-cell {
+
+    padding: 10px;
+    background-color: #f1f9ff;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+    width: 66%;
+    height: 500px;
+    margin-right: 10px;
+    counter-increment: gallery-cell;
+}
+
+/* 슬라이드 cell number */
+/*
+.gallery-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(gallery-cell);
+    line-height: 500px;
+    font-size: 80px;
+    color: black;
+}
+*/

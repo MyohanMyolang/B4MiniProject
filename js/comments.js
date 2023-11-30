@@ -11,7 +11,7 @@ export async function postComments(doc) {
 // 방명록 목록 가져오기
 export async function getCommentsList() {
     let docs = await getDocs(collection(db, "comments"));
-    if (docs.size == 0) return; 
+    if (docs.size == 0) return;
 
     $('#commentsbox').show();
 
@@ -22,14 +22,14 @@ export async function getCommentsList() {
 
         // 수정, 삭제 위해 id 가져옴
         let docId = doc.id;
-    
+
         let row = doc.data();
         let nickname = row['nickname'];
         let content = row['content'];
         let password = row['password'];
-    
+
         let temp_html = `
-        <div class="comments">
+        <div class="gallery-cell">
             <div class="nickname">${nickname}</div>
             <hr />
             <div id="content${docNo}" class="content">${content}</div>
@@ -39,19 +39,25 @@ export async function getCommentsList() {
                 <button id="editingbtn${docNo}" type="button" class="btn btn-primary">수정</button>
                 <button id="deletingbtn${docNo}" type="button" class="btn btn-secondary">삭제</button>
             </div>
-        </div>`;
-        $('#commentsbox').append(temp_html);
-    
+        </div>
+        `;
+
+        //$('#commentsbox').append(temp_html);
+        $('.gallery').append(temp_html);
+
+        // 캐러셀 다시 초기화
+        //$('#commentsbox').flickity('reloadCells');
+
         // 확인 버튼 숨김
-        $('#confirmbtn'+docNo).hide();
+        $('#confirmbtn' + docNo).hide();
 
         // 수정 버튼 클릭 이벤트
-        $('#editingbtn'+docNo).click(async function () {
+        $('#editingbtn' + docNo).click(async function () {
             editComments(docNo, docId, password);
         })
-    
+
         // 삭제 버튼 클릭 이벤트
-        $('#deletingbtn'+docNo).click(async function () {
+        $('#deletingbtn' + docNo).click(async function () {
             deleteComments(docId, password);
         })
     });
@@ -61,16 +67,16 @@ export async function getCommentsList() {
 async function editComments(docNo, docId, password) {
     let input = prompt('수정하시려면 비밀번호를 입력하세요.');
     if (input === password) {
-        $('#content'+docNo).attr('contenteditable', 'true');
-        $('#content'+docNo).css('border', '1px solid grey');
+        $('#content' + docNo).attr('contenteditable', 'true');
+        $('#content' + docNo).css('border', '1px solid grey');
 
-        $('#editingbtn'+docNo).hide();
-        $('#confirmbtn'+docNo).show();
+        $('#editingbtn' + docNo).hide();
+        $('#confirmbtn' + docNo).show();
 
         // 확인 버튼 클릭 이벤트
-        $('#confirmbtn'+docNo).click(async function () {
+        $('#confirmbtn' + docNo).click(async function () {
             const docRef = await doc(db, "comments", docId);
-            await updateDoc(docRef, { content: $('#content'+docNo).text() });
+            await updateDoc(docRef, { content: $('#content' + docNo).text() });
             alert('수정되었습니다!');
             window.location.reload();
         })
