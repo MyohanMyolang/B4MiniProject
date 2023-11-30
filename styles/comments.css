@@ -9,7 +9,7 @@
     content: "";
     flex-grow: 1;
     margin: 0px 16px;
-    background: blue;
+    background: grey;
     height: 1px;
     font-size: 0px;
     line-height: 0px;
@@ -19,7 +19,7 @@
     content: "";
     flex-grow: 1;
     margin: 0px 16px;
-    background: blue;
+    background: grey;
     height: 1px;
     font-size: 0px;
     line-height: 0px;
@@ -31,6 +31,7 @@
 
 .postingbox {
     display: none;
+    background-color: white;
     width: 500px;
     margin: 30px auto 0px auto;
     padding: 20px;
@@ -57,7 +58,7 @@
 }
 
 .comments {
-    background-color: transparent;
+    background-color: #f1f9ff;
     border-left: 1px solid grey;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
