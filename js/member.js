@@ -37,18 +37,22 @@ export const getMember = async (key, value) => {
 }
 
 export const getAllMember = async () => {
-  const result = [];
   const snap = await getDocs(memberRef);
   snap.forEach((doc) => {
-    result.push(
-      {
-        id: doc.id,
-        ...doc.data()
-      }
-    );
-  })
+    const name = doc.data()['name'];
 
-  return result;
+    const temp_html = `
+    <div class="col-lg-3">
+      <a href='privatepage.html?name="${name}"'>
+        <img class="rounded-circle" width="200" height="200"
+          src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202306/25/488f9638-800c-4bac-ad65-82877fbff79b.jpg" />
+        <h2 class="name">${name}</h2>
+      </a>
+    </div>
+    `;
+
+    $('#memberRow').append(temp_html);
+  })
 }
 
 export const updateMember = async (id, data) => {

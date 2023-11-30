@@ -47,3 +47,7 @@ a:visited {
   color: #0d99ff;
   text-decoration: none;
 }
+
+.name {
+  margin: 10px 0px 30px 0px;
+}
