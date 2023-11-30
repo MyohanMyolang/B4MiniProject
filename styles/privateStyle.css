@@ -101,3 +101,8 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+
+textarea {
+  resize: none;
+  overflow: hidden;
+}

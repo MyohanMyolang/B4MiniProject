@@ -31,6 +31,7 @@ export async function getCommentsList() {
         let temp_html = `
         <div class="comments">
             <div class="nickname">${nickname}</div>
+            <hr />
             <div id="content${docNo}" class="content">${content}</div>
             
             <div class="btnbox">
