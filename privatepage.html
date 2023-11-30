@@ -65,6 +65,7 @@
       compBtn.click(updateInfo);
 
       const onBlurInput = (e) => {
+        if (e.target.value.trim() === "") return;
         updateData[e.target.id] = e.target.value;
       };
       inputBoxList.blur(onBlurInput);
@@ -78,7 +79,7 @@
   <body>
     <header id="header">
       <div id="logoWrapper">
-        <a href="/" id="logo">4Dev Project</a>
+        <a href="privatepage.html" id="logo">4Dev Project</a>
       </div>
     </header>
     <container>

@@ -5,15 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>--Team About Site</title>
 
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/comments.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script type="module">
+      import { getCommentsList, postComments } from "/js/comments.js";
+
+      // 방명록 목록 가져오기
+      await getCommentsList();
+
+      // 방명록 등록박스 보임/숨김
+      $("#showbtn").click(async function () {
+        $("#postingbox").toggle();
+      });
+
+      // 방명록 등록 버튼 클릭
+      $("#postingbtn").click(async function () {
+        let doc = {
+          nickname: $("#nickname").val(),
+          content: $("#content").val(),
+          password: $("#password").val(),
+        };
+        await postComments(doc);
+      });
+
+      // 방명록 등록박스 닫기 버튼 클릭
+      $("#hidingbtn").click(async function () {
+        $("#postingbox").hide();
+      });
+    </script>
   </head>
   <body>
     <header id="header">
       <div id="logoWrapper">
-        <a href="/" id="logo">4Dev Project</a>
+        <a href="private_ksm.html" id="logo">4Dev Project</a>
       </div>
     </header>
     <container id="container"> </container>
-    <a href="/privatepage.html">test</a>
+    <a href="privatepage.html">test</a>
+
+    <div class="division">
+      <div class="division-line">
+        <button id="showbtn" class="btn btn-primary">방명록 쓰기</button>
+      </div>
+    </div>
+
+    <div class="postingbox" id="postingbox">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="nickname"
+          placeholder="Nickname"
+        />
+        <label for="nickname">Nickname</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          id="content"
+          placeholder="Comments"
+          style="height: 100px"
+        ></textarea>
+        <label for="content">Comments</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+        />
+        <label for="password">Password</label>
+      </div>
+      <div class="mybtn">
+        <button id="postingbtn" type="button" class="btn btn-primary">
+          등록하기
+        </button>
+        <button id="hidingbtn" type="button" class="btn btn-outline-primary">
+          닫기
+        </button>
+      </div>
+    </div>
+
+    <div class="commentsbox" id="commentsbox"></div>
   </body>
 </html>

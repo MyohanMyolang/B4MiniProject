@@ -1,5 +1,5 @@
 import db from "./FirestoreInit.js"
-import { collection, doc, updateDoc ,getDocs, setDoc, query, where,deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { collection, doc, updateDoc ,getDocs, setDoc, query, where,deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
 const memberRef = collection(db, "member");
