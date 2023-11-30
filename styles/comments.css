@@ -1,78 +1,79 @@
 .division-line {
-    display: flex;
-    flex-basis: 100%;
-    align-items: center;
-    margin: 8px 0px;
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  margin: 8px 0px;
 }
 
 .division-line::before {
-    content: "";
-    flex-grow: 1;
-    margin: 0px 16px;
-    background: blue;
-    height: 1px;
-    font-size: 0px;
-    line-height: 0px;
+  content: "";
+  flex-grow: 1;
+  margin: 0px 16px;
+  background: grey;
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
 }
 
 .division-line::after {
-    content: "";
-    flex-grow: 1;
-    margin: 0px 16px;
-    background: blue;
-    height: 1px;
-    font-size: 0px;
-    line-height: 0px;
+  content: "";
+  flex-grow: 1;
+  margin: 0px 16px;
+  background: grey;
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
 }
 
 .showbtn {
-    position: relative;
+  position: relative;
 }
 
 .postingbox {
-    display: none;
-    width: 500px;
-    margin: 30px auto 0px auto;
-    padding: 20px;
-    box-shadow: 0px 0px 3px 0px grey;
-    border-radius: 5px;
+  display: none;
+  background-color: white;
+  width: 500px;
+  margin: 30px auto 0px auto;
+  padding: 20px;
+  box-shadow: 0px 0px 3px 0px grey;
+  border-radius: 5px;
 }
 
 .mybtn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.mybtn>button {
-    margin-right: 5px;
+.mybtn > button {
+  margin-right: 5px;
 }
 
 .commentsbox {
-    display: none;
-    width: 500px;
-    margin: 30px auto 30px auto;
-    border-top: 1px solid grey;
+  display: none;
+  width: 500px;
+  margin: 30px auto 30px auto;
+  border-top: 1px solid grey;
 }
 
 .comments {
-    background-color: transparent;
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
-    padding: 20px;
+  background-color: #f1f9ff;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 20px;
 }
 
 .nickname {
-    padding: 0px 0px 2px 5px;
+  padding: 0px 0px 2px 5px;
 }
 
 .content {
-    padding: 2px 5px 2px 5px;
+  padding: 2px 5px 2px 5px;
 }
 
 .btnbox {
-    margin-top: 5px;
-    text-align: right;
+  margin-top: 5px;
+  text-align: right;
 }

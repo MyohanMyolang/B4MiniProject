@@ -22,8 +22,28 @@ body {
   padding: 30px;
 }
 
+header > a:link,
+header > a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.bg {
+  background-color: #e3f3fe;
+}
+
+.title {
+  color: #0d99ff;
+}
+
 a:link,
 a:visited {
-  color: white;
+  color: #0d99ff;
   text-decoration: none;
 }
