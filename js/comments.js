@@ -1,4 +1,4 @@
-import { db } from "./FirestoreInit.js"
+import db from "./FirestoreInit.js"
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 // 방명록 등록하기
