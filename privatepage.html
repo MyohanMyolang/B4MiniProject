@@ -16,51 +16,39 @@
 
       // init
       const inputBoxList = $(".inputBox");
-      inputBoxList.attr("readonly", true);
       const compBtn = $("#completeModify");
-      compBtn.toggle();
 
       let isModify = false;
-      let info;
+      let info = {
+        id: null,
+        data: null,
+      };
 
       let updateData = {};
 
+      const qs = new URLSearchParams(location.search);
+      const name = qs.get("name");
+      const isModifyMode = name !== null ? true : false;
+
       (async () => {
-        // page 하나로 private page를 구성한다면 searchString을 사용하여 name부분을 가져올 수 있다. 관계형 DB일 경우 id를 사용한다.
-        info = await getMember("name", "전창현");
-        if (info.data === null) {
-          alert("저장된 데이터가 없습니다.");
-          return;
+        if (isModifyMode) {
+          info = await getMember("name", name);
+          if (info.data === null) {
+            // alert("데이터가 존재하지 않습니다.")
+            return;
+          }
+          const keys = Object.keys(info.data);
+          keys.forEach((key) => {
+            document.getElementById(key).value = info.data[key];
+          });
         }
-        const keys = Object.keys(info.data);
-        keys.forEach((key) => {
-          document.getElementById(key).value = info.data[key];
-        });
       })();
 
       // end init
 
-      const modChange = () => {
-        isModify = !isModify;
-        const isReadOnly = !inputBoxList.attr("readonly");
-        if (isReadOnly) {
-          inputBoxList.addClass("inputBox");
-          inputBoxList.removeClass("inputBoxModify");
-          compBtn.toggle();
-        } else {
-          inputBoxList.addClass("inputBoxModify");
-          inputBoxList.removeClass("inputBox");
-          compBtn.toggle();
-          updateData = {};
-        }
-        inputBoxList.attr("readonly", isReadOnly);
-      };
-
       const updateInfo = async () => {
-        console.log(info.id);
-        await updateMember(info.id, updateData);
-
-        modChange();
+        if (updateData.name === undefined) return;
+        await updateMember(info.id ?? null, updateData);
       };
       compBtn.click(updateInfo);
 
@@ -69,11 +57,6 @@
         updateData[e.target.id] = e.target.value;
       };
       inputBoxList.blur(onBlurInput);
-
-      const onClickUpdateBtn = async () => {};
-      compBtn.click(onClickUpdateBtn);
-
-      $("#modifyBtn").click(modChange);
     </script>
   </head>
   <body>
@@ -86,13 +69,6 @@
       <div id="aboutWrapper">
         <div id="aboutBox">
           <div id="leftBox">
-            <!-- 수정 모드일 시 Image를 누르면 Image 수정이 가능토록. -->
-            <div id="userImage">
-              <img
-                style="width: 30dvh; height: 30dvh"
-                src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"
-              />
-            </div>
             <input
               id="name"
               value=""
@@ -101,34 +77,17 @@
               placeholder="이름"
             />
             <input
-              id="age"
+              id="mbti"
               value=""
-              placeholder="나이"
+              placeholder="MBTI"
               style="font-size: 24px"
               class="inputBox"
             />
-            <textarea
-              id="about"
-              style="height: 120px; resize: none"
-              class="inputBox"
-              placeholder="자기소개"
-            ></textarea>
-          </div>
-          <div id="aboutDetail">
-            <label for="goal">목표</label>
-            <textarea id="goal" class="inputBox"></textarea>
-            <label for="reason">코딩을 시작한 계기</label>
-            <textarea id="reason" class="inputBox"></textarea>
-            <label for="finalgoal">최종 목표</label>
-            <textarea id="finalgoal" class="inputBox"></textarea>
-            <label for="wantsay">하고싶은 말</label>
-            <textarea id="wantsay" class="inputBox"></textarea>
           </div>
         </div>
       </div>
       <div id="contBtnWrapper">
         <button id="completeModify">완료</button>
-        <button id="modifyBtn">수정</button>
       </div>
     </container>
   </body>
