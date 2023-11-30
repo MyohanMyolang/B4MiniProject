@@ -41,6 +41,8 @@
           keys.forEach((key) => {
             document.getElementById(key).value = info.data[key];
           });
+          $("#name").attr("readonly", true);
+          return;
         }
       })();
 
