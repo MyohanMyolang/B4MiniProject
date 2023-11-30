@@ -55,67 +55,37 @@
     </style>
 
 
-    <script type="module">
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
+  <script type="module">
+  import {getMember} from "/js/member.js"
+    
+    const qs = new URLSearchParams(location.search);
+    const name = qs.get("name");
+    let info;
 
-        // Firebase 구성 정보 설정
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyC-7tsG8UV9RMvoADu4_OLOKxKvJ5ce1b0",
-            authDomain: "sparta-16338.firebaseapp.com",
-            projectId: "sparta-16338",
-            storageBucket: "sparta-16338.appspot.com",
-            messagingSenderId: "974261548905",
-            appId: "1:974261548905:web:22101cb8f5bbda08a26ff8",
-            measurementId: "G-XFQ4P04BQ8"
-        };
+    $("#modifyBtn").click(() => {
+      if(name === null) return;
+    location.href=`/inputpage.html?name=${name}`;
+    });
 
+    (async () => {
+      info = await getMember("name", name);
+      console.log(info);
+          if (info.data === null) {
+            // alert("데이터가 존재하지 않습니다.")
+            return;
+          }
+          const keys = Object.keys(info.data);
+          let tempHtml = "";
+          keys.forEach((key) => {
 
-        // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+            tempHtml += `<p>${key} : ${info.data[key]}</p>`;
+          });
+          $("#aboutBox").append(tempHtml);
+    })();
+</script>
 
-
-
-
-
-        // 멤버 정보 목록
-        let docs = await getDocs(collection(db, "movies"));
-        docs.forEach((doc) => {
-            let row = doc.data();
-
-            let image = row['image'];
-            let title = row['title'];
-            let comment = row['comment'];
-            let star = row['star'];
-
-            let temp_html = `
-        <div class="col">
-            <div class="card h-100">
-                <img src="${image}"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <p class="card-text">${star}</p>
-                    <p class="card-text">${comment}</p>
-                </div>
-            </div>
-        </div>`;
-            $('#card').append(temp_html);
-
-
-        });
-
-
-    </script>
-
-
-</head>
+</head>j
 
 
 
@@ -160,92 +130,21 @@
         <div class="inbox">
           <div class="nes-container is-dark with-title">
             <p class="title">About Me</p>
-            <p>Name : KIM SEONG MIN</p>
-            <p>MBTI : INTP</p>
-            <p>Blog : none</p>
-            <p>Blog : none</p>
-            <p>Blog : none</p>
-            <p>Blog : none</p>
+            <div id="aboutBox"></div>
 
-            <section class="icon-list">
-              <!-- heart -->
-              <i class="nes-icon is-medium heart"></i>
-              <i class="nes-icon is-medium is-half heart"></i>
-              <i class="nes-icon is-medium is-transparent heart"></i>
-              <i class="nes-icon is-medium heart is-empty"></i>
-            </section>
 
             <button
               type="button"
               class="nes-btn is-primary"
-              style="float: right"
-              onclick="document.getElementById('dialog-dark-rounded').showModal();"
-            >
-              Address
-            </button>
-
-            <button
-              type="button"
-              class="nes-btn is-disabled"
+              id="modifyBtn"
               style="float: right"
             >
-              Message
+              Modify
             </button>
 
-            <dialog
-              class="nes-dialog is-dark is-rounded"
-              id="dialog-dark-rounded"
-            >
-              <form method="dialog">
-                <p class="title">Warning</p>
-                <p>it's a secret</p>
-                <menu class="dialog-menu">
-                  <button class="nes-btn">Cancel</button>
-                  <button class="nes-btn is-primary">OK</button>
-                </menu>
-              </form>
-            </dialog>
 
-            <!-- Dark and Rounded dialog -->
-            <section>
-              <!-- instagram -->
-              <i class="nes-icon instagram is-medium"></i>
-              <!-- github -->
-              <i class="nes-icon github is-medium"></i>
-              <!-- gmail -->
-              <i class="nes-icon gmail is-medium"></i>
-              <!-- youtube -->
-              <i class="nes-icon youtube is-medium"></i>
-            </section>
           </div>
         </div>
-
-        <div class="inbox">
-          <div class="nes-container is-dark with-title">
-            <span class="nes-text is-primary">I</span
-            ><progress
-              class="nes-progress is-primary"
-              value="48"
-              max="100"
-            ></progress>
-            <span class="nes-text is-success">N</span
-            ><progress
-              class="nes-progress is-success"
-              value="71"
-              max="100"
-            ></progress>
-            <span class="nes-text is-warning">T</span
-            ><progress
-              class="nes-progress is-warning"
-              value="41"
-              max="100"
-            ></progress>
-            <span class="nes-text is-error">P</span
-            ><progress
-              class="nes-progress is-error"
-              value="63"
-              max="100"
-            ></progress>
           </div>
         </div>
       </div>
