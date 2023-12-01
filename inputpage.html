@@ -70,10 +70,14 @@
       })();
 
       // end init
+      
 
       const updateInfo = async () => {
-        if (updateData.name === undefined) return;
+        if (isModifyMode && name === undefined && name === null) return;
         await updateMember(info.id ?? null, updateData);
+        location.href = isModifyMode
+          ? `/privatepage.html?name=${name}`
+          : `/privatepage.html?name=${updateData.name}`;
       };
       compBtn.click(updateInfo);
 
