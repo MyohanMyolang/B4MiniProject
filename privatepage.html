@@ -26,7 +26,7 @@
 
     .header {
       padding: 100px;
-      margin: 50px auto 50px 300px;
+      margin: 50px auto 50px 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,7 +87,11 @@
 
         tempHtml += `<p>${key} : ${info.data[key]}</p>`;
       });
+      
       $("#aboutBox").append(tempHtml);
+      $("#name").append(name);
+
+
     })();
   </script>
 
@@ -102,9 +106,9 @@
   </p>
 
   <div class="header">
-    <i class="nes-kirby" style="margin-right: 50px"></i>
+    <i class="nes-kirby"></i>
     <p class="nes-text is-disabled" style="font-size: 45px">
-      Welcome to My Page!
+      Hi! I'm <span id="name"></span>
     </p>
     <i class="nes-kirby"></i>
   </div>

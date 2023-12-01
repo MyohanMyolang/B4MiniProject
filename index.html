@@ -74,19 +74,22 @@
     </header>
 
     <div class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-4 d-flex flex-column gap-3">
+      <div>
+        <div>
           <h2 class="title">Team B4Dev</h2>
           <p>팀 소개<br />Before Developer now, Become Developer soon</p>
           <p>목표<br />성공적인 팀 프로젝트 완성!</p>
 
-          <div class="division">
+          <!-- 방명록 추가 -->
+          <div class="gallery"></div>
+
+          <div class="division" style="margin-top: 100px;">
             <div class="division-line">
               <button id="showbtn" class="btn btn-primary">방명록 쓰기</button>
             </div>
           </div>
 
-          <div class="postingbox" id="postingbox">
+          <div class="postingbox" id="postingbox" style="margin-bottom: 100px;">
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -127,10 +130,15 @@
               </button>
             </div>
           </div>
+          
         </div>
+        
       </div>
-      <div class="gallery"></div>
+
+      
+
     </div>
+    
 
     <div class="container text-center px-5 py-5">
       <div class="row justify-content-center" id="memberRow">
