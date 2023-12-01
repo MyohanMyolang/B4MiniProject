@@ -50,7 +50,7 @@
       let updateData = {};
 
       const qs = new URLSearchParams(location.search);
-      const name = qs.get("name");
+      const name = qs.get("engname");
       const isModifyMode = name !== null ? true : false;
 
       (async () => {
@@ -147,7 +147,6 @@
                         placeholder="engname"
                       />
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -169,7 +168,6 @@
             </container>
 
             <div id="aboutBox"></div>
-
           </div>
         </div>
       </div>

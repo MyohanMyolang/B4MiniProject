@@ -5,7 +5,6 @@ import { collection, doc, updateDoc ,getDocs, setDoc, query, where,deleteDoc } f
 const memberRef = collection(db, "member");
 
 export const setMember = async (data) => {
-  console.log(data);
   try{
     await setDoc(doc(memberRef), data, { merge: true });
   }
@@ -64,8 +63,6 @@ export const getAllMember = async () => {
 }
 
 export const updateMember = async (id, data) => {
-  console.log(id);
-  console.log(data);
   id == null || id == undefined ? await setMember(data) :await updateDoc(doc(memberRef, id), data)
 }
 
