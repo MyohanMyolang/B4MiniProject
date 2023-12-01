@@ -85,7 +85,9 @@
 
       keys.forEach((key) => {
 
+        if(key === "profileimg") return;
         tempHtml += `<p>${key} : ${info.data[key]}</p>`;
+
       });
       
       $("#aboutBox").append(tempHtml);
