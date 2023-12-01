@@ -72,7 +72,7 @@
       // end init
 
       const updateInfo = async () => {
-        if (name === undefined && name === null) return;
+        if (isModifyMode && name === undefined && name === null) return;
         await updateMember(info.id ?? null, updateData);
         location.href = `/privatepage.html?name=${name}`;
       };
