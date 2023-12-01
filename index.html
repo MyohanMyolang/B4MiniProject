@@ -1,159 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>--Team B4DEV</title>
 
-    <!-- css -->
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/comments.css" />
-    <link rel="stylesheet" href="styles/slideblock.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>--Team B4DEV</title>
 
-    <!-- src -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+  <!-- css -->
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/comments.css" />
+  <link rel="stylesheet" href="styles/slideblock.css" />
 
-    <!-- 슬라이드src -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css"
-      integrity="sha384-eMnMGHG0lFWJqST/PdAO2tncN4kUat61VyuR6X0P37k0uO/mpj+j4EczG61OHir/"
-      crossorigin="anonymous"
-    />
+  <!-- src -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <script type="module">
-      import { getAllMember } from "/js/member.js";
-      import { getCommentsList, postComments } from "/js/comments.js";
+  <!-- 슬라이드src -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css"
+    integrity="sha384-eMnMGHG0lFWJqST/PdAO2tncN4kUat61VyuR6X0P37k0uO/mpj+j4EczG61OHir/" crossorigin="anonymous" />
 
-      // 멤버 목록 가져오기
-      await getAllMember();
+  <script type="module">
+    import { getAllMember } from "/js/member.js";
+    import { getCommentsList, postComments } from "/js/comments.js";
 
-      // 방명록 목록 가져오기
-      await getCommentsList();
+    // 멤버 목록 가져오기
+    await getAllMember();
 
-      // 방명록 등록박스 보임/숨김
-      $("#showbtn").click(async function () {
-        $("#postingbox").toggle();
-      });
+    // 방명록 목록 가져오기
+    await getCommentsList();
 
-      // 방명록 등록 버튼 클릭
-      $("#postingbtn").click(async function () {
-        let doc = {
-          nickname: $("#nickname").val(),
-          content: $("#content").val(),
-          password: $("#password").val(),
-        };
-        await postComments(doc);
-      });
+    // 방명록 등록박스 보임/숨김
+    $("#showbtn").click(async function () {
+      $("#postingbox").toggle();
+    });
 
-      // 방명록 등록박스 닫기 버튼 클릭
-      $("#hidingbtn").click(async function () {
-        $("#postingbox").hide();
-      });
+    // 방명록 등록 버튼 클릭
+    $("#postingbtn").click(async function () {
+      let doc = {
+        nickname: $("#nickname").val(),
+        content: $("#content").val(),
+        password: $("#password").val(),
+      };
+      await postComments(doc);
+    });
 
-      $(".gallery").flickity({
-        // options
-        cellAlign: "left",
-        contain: true,
-      });
-    </script>
-  </head>
+    // 방명록 등록박스 닫기 버튼 클릭
+    $("#hidingbtn").click(async function () {
+      $("#postingbox").hide();
+    });
 
-  <body class="bg">
-    <header id="header">
-      <div id="logoWrapper">
-        <a href="#" id="logo">4Dev Project</a>
-      </div>
-    </header>
+    $(".gallery").flickity({
+      // options
+      cellAlign: "left",
+      contain: true,
+    });
+  </script>
+</head>
 
-    <div class="container py-5">
-      <div>
-        <div>
-          <h2 class="title">Team B4Dev</h2>
-          <p>팀 소개<br />Before Developer now, Become Developer soon</p>
-          <p>목표<br />성공적인 팀 프로젝트 완성!</p>
+<body class="bg">
+  <header id="header">
+    <div id="logoWrapper">
+      <a href="#" id="logo">4Dev Project</a>
+    </div>
+  </header>
 
-          <!-- 방명록 추가 -->
-          <div class="gallery"></div>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 d-flex flex-column gap-3">
+        <h2 class="title">Team B4Dev</h2>
+        <p>팀 소개<br>Before Developer now, Become Developer soon</p>
+        <p>목표<br>성공적인 팀 프로젝트 완성!</p>
 
-          <div class="division" style="margin-top: 100px;">
-            <div class="division-line">
-              <button id="showbtn" class="btn btn-primary">방명록 쓰기</button>
-            </div>
+
+        <div class="division">
+          <div class="division-line">
+            <button id="showbtn" class="btn btn-primary">방명록 쓰기</button>
           </div>
-
-          <div class="postingbox" id="postingbox" style="margin-bottom: 100px;">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="nickname"
-                placeholder="Nickname"
-              />
-              <label for="nickname">Nickname</label>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea
-                class="form-control"
-                id="content"
-                placeholder="Comments"
-                style="height: 100px"
-              ></textarea>
-              <label for="content">Comments</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Password"
-              />
-              <label for="password">Password</label>
-            </div>
-            <div class="mybtn">
-              <button id="postingbtn" type="button" class="btn btn-primary">
-                등록하기
-              </button>
-              <button
-                id="hidingbtn"
-                type="button"
-                class="btn btn-outline-primary"
-              >
-                닫기
-              </button>
-            </div>
-          </div>
-          
         </div>
-        
+
+        <div class="postingbox" id="postingbox">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+            <label for="nickname">Nickname</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" id="content" placeholder="Comments" style="height: 100px"></textarea>
+            <label for="content">Comments</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <div class="mybtn">
+            <button id="postingbtn" type="button" class="btn btn-primary">등록하기</button>
+            <button id="hidingbtn" type="button" class="btn btn-outline-primary">닫기</button>
+          </div>
+        </div>
+
       </div>
 
-      
+
+      <div class="col-lg-8 col-xl-8">
+
+        <!-- 방명록 추가 -->
+        <div class="gallery"></div>
+
+      </div>
 
     </div>
-    
+  </div>
 
-    <div class="container text-center px-5 py-5">
-      <div class="row justify-content-center" id="memberRow">
-        <div class="col-lg-3">
-          <a href="inputpage.html">
-            <img
-              class="rounded-circle"
-              width="200"
-              height="200"
-              src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-question-mark-vector-icon-png-image_5152512.jpg"
-            />
-            <h2 class="name">함께하기</h2>
-          </a>
-        </div>
+
+  <div class="container text-center px-5 py-5">
+    <div class="row justify-content-center" id="memberRow">
+      <div class="col-lg-3">
+        <a href="inputpage.html">
+          <img class="rounded-circle" width="200" height="200"
+            src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-question-mark-vector-icon-png-image_5152512.jpg" />
+          <h2 class="name">함께하기</h2>
+        </a>
       </div>
     </div>
-  </body>
+  </div>
+
+</body>
+
 </html>

@@ -2,13 +2,13 @@
   display: flex;
   flex-basis: 100%;
   align-items: center;
-  margin: 8px 0px;
+  /* margin: 8px 0px; */
 }
 
 .division-line::before {
   content: "";
   flex-grow: 1;
-  margin: 0px 16px;
+  margin: 0px 5px;
   background: grey;
   height: 1px;
   font-size: 0px;
@@ -18,7 +18,7 @@
 .division-line::after {
   content: "";
   flex-grow: 1;
-  margin: 0px 16px;
+  margin: 0px 5px;
   background: grey;
   height: 1px;
   font-size: 0px;
@@ -33,7 +33,7 @@
   display: none;
   background-color: white;
   width: 100%;
-  margin: 30px auto 0px auto;
+  margin: 10px auto 0px auto;
   padding: 20px;
   box-shadow: 0px 0px 3px 0px grey;
   border-radius: 5px;
