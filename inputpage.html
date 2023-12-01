@@ -50,7 +50,7 @@
       let updateData = {};
 
       const qs = new URLSearchParams(location.search);
-      const name = qs.get("engname");
+      const name = qs.get("name");
       const isModifyMode = name !== null ? true : false;
 
       (async () => {
@@ -87,88 +87,95 @@
 
   <body>
     <header id="header">
-      <div id="logoWrapper">
+      <div id="logoWrapper" style="padding: 100px 100px 100px 100px">
         <a href="/" id="logo">4Dev Project</a>
       </div>
     </header>
 
     <div class="main">
-      <div class="nes-container is-dark with-title" style="width: 90%">
-        <p class="title">SIGN UP</p>
+      <div class="inbox">
+        <div class="nes-container is-dark with-title">
+          <p class="title">Enter your information here!</p>
 
-        <div class="inbox">
-          <div class="nes-container is-dark with-title">
-            <p class="title">Enter your information here!</p>
+          <container>
+            <div id="aboutWrapper">
+              <div id="aboutBox">
+                <div
+                  class="nes-field is-inline"
+                  style="padding-top: 50px; width: 80%"
+                >
+                  <label for="inline_field">NAME</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value=""
+                    class="nes-input is-success inputBox"
+                    placeholder="name"
+                  />
+                </div>
 
-            <container>
-              <div id="aboutWrapper">
-                <div id="aboutBox">
-                  <div id="leftBox">
-                    <div class="nes-field is-inline">
-                      <label for="inline_field">NAME</label>
-                      <input
-                        type="text"
-                        id="name"
-                        value=""
-                        class="nes-input is-success inputBox"
-                        placeholder="name"
-                      />
-                    </div>
+                <div
+                  class="nes-field is-inline"
+                  style="padding-top: 50px; width: 80%"
+                >
+                  <label for="warning_field">MBTI</label>
+                  <input
+                    type="text"
+                    id="mbti"
+                    value=""
+                    class="nes-input is-warning inputBox"
+                    placeholder="mbti"
+                  />
+                </div>
 
-                    <div class="nes-field is-inline">
-                      <label for="warning_field">MBTI</label>
-                      <input
-                        type="text"
-                        id="mbti"
-                        value=""
-                        class="nes-input is-warning inputBox"
-                        placeholder="mbti"
-                      />
-                    </div>
+                <div
+                  class="nes-field is-inline"
+                  style="padding-top: 50px; width: 80%"
+                >
+                  <label for="warning_field">PROFILE IMAGE</label>
+                  <input
+                    type="text"
+                    id="profileimg"
+                    value=""
+                    class="nes-input is-warning inputBox"
+                    placeholder="profileimg"
+                  />
+                </div>
 
-                    <div class="nes-field is-inline">
-                      <label for="warning_field">PROFILE IMAGE</label>
-                      <input
-                        type="text"
-                        id="profileimg"
-                        value=""
-                        class="nes-input is-warning inputBox"
-                        placeholder="profileimg"
-                      />
-                    </div>
-
-                    <div class="nes-field is-inline">
-                      <label for="warning_field">ENGLISH NAME</label>
-                      <input
-                        type="text"
-                        id="engname"
-                        value=""
-                        class="nes-input is-warning inputBox"
-                        placeholder="engname"
-                      />
-                    </div>
-                  </div>
+                <div
+                  class="nes-field is-inline"
+                  style="padding-top: 50px; width: 80%"
+                >
+                  <label for="warning_field">ENGLISH NAME</label>
+                  <input
+                    type="text"
+                    id="engname"
+                    value=""
+                    class="nes-input is-warning inputBox"
+                    placeholder="engname"
+                  />
                 </div>
               </div>
+            </div>
 
-              <div id="contBtnWrapper">
-                <button
-                  id="completeModify"
-                  type="button"
-                  class="nes-btn is-primary"
-                >
-                  Confirm
-                </button>
-              </div>
+            <div id="contBtnWrapper" style="padding-top: 150px">
+              <button
+                id="completeModify"
+                type="button"
+                class="nes-btn is-primary"
+                style="float: right"
+              >
+                Confirm
+              </button>
+            </div>
 
-              <label class="nes-btn">
-                <span>Select your file</span>
-                <input type="file" />
-              </label>
-            </container>
+            <label class="nes-btn">
+              <span>Select your file</span>
+              <input type="file" />
+            </label>
+          </container>
 
-            <div id="aboutBox"></div>
-          </div>
+          <div id="aboutBox"></div>
         </div>
       </div>
     </div>

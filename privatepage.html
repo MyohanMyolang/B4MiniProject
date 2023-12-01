@@ -1,193 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEV4member</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEV4member</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- nes.css -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- nes.css -->
-  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
-
-  <style>
-    body {
-      background-color: black;
-      background-image: url("https://www.sciencetimes.co.kr/wp-content/uploads/2023/06/STScI-01H1CV2FH3KW1W8A4ZVQ6MDHHT.jpg");
-      background-position: center;
-      background-size: cover;
-    }
-
-    .header {
-      padding: 100px;
-      margin: 50px auto 50px 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      margin-bottom: 500px;
-    }
-
-    .inbox {
-      float: left;
-      padding: 10px;
-      width: 50%;
-      height: 700px;
-    }
-  </style>
-
-
-
-  <script type="module">
-    import { getMember } from "/js/member.js"
-
-    const qs = new URLSearchParams(location.search);
-    const name = qs.get("name");
-    let info;
-
-    $("#modifyBtn").click(() => {
-      if (name === null) return;
-      location.href = `/inputpage.html?name=${name}`;
-    });
-
-    (async () => {
-      info = await getMember("name", name);
-      console.log(info);
-      if (info.data === null) {
-        // alert("데이터가 존재하지 않습니다.")
-        return;
+    <style>
+      body {
+        background-color: black;
+        background-image: url("https://www.sciencetimes.co.kr/wp-content/uploads/2023/06/STScI-01H1CV2FH3KW1W8A4ZVQ6MDHHT.jpg");
+        background-position: center;
+        background-size: cover;
       }
 
-      const keys = Object.keys(info.data);
-
-      keys.sort(); // 키를 알파벳순으로 정렬합니다.
-      const nameIndex = keys.indexOf("name");
-      if (nameIndex > 0) {
-        // name 키가 배열의 첫 번째 요소가 아닌 경우
-        keys.splice(nameIndex, 1); // name 키를 배열에서 제거합니다.
-        keys.unshift("name"); // name 키를 배열의 첫 번째 요소로 이동시킵니다.
+      .header {
+        padding: 100px;
+        margin: 50px auto 50px 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      let tempHtml = "";
+      .main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 500px;
+      }
 
+      .inbox {
+        float: left;
+        padding: 10px;
+        width: 50%;
+        height: 700px;
+      }
+    </style>
 
-      keys.forEach((key) => {
+    <script type="module">
+      import { getMember } from "/js/member.js";
 
-        if (key === "profileimg") return;
-        tempHtml += `<p>${key} : ${info.data[key]}</p>`;
+      const qs = new URLSearchParams(location.search);
+      const name = qs.get("name");
+      let info;
 
+      $("#modifyBtn").click(() => {
+        if (name === null) return;
+        location.href = `/inputpage.html?name=${name}`;
       });
 
-      $("#aboutBox").append(tempHtml);
-      $("#engname").append(info.data.engname);
+      (async () => {
+        info = await getMember("name", name);
+        console.log(info);
+        if (info.data === null) {
+          // alert("데이터가 존재하지 않습니다.")
+          return;
+        }
 
+        const keys = Object.keys(info.data);
 
-    })();
-  </script>
+        keys.sort(); // 키를 알파벳순으로 정렬합니다.
+        const nameIndex = keys.indexOf("name");
+        if (nameIndex > 0) {
+          // name 키가 배열의 첫 번째 요소가 아닌 경우
+          keys.splice(nameIndex, 1); // name 키를 배열에서 제거합니다.
+          keys.unshift("name"); // name 키를 배열의 첫 번째 요소로 이동시킵니다.
+        }
 
-</head>j
+        let tempHtml = "";
 
+        keys.forEach((key) => {
+          if (key === "profileimg") return;
+          tempHtml += `<p>${key} : ${info.data[key]}</p>`;
+        });
 
+        $("#aboutBox").append(tempHtml);
+        $("#engname").append(info.data.engname);
+      })();
+    </script>
+  </head>
 
-
-<body>
-  <p class="nes-text is-primary" style="float: right; margin-right: 50px">
-    Copyright B4DEV
-  </p>
-
-  <div class="header">
-    <i class="nes-kirby"></i>
-    <p class="nes-text is-disabled" style="font-size: 45px">
-      Hi! I'm <span id="engname"></span>
+  <body>
+    <p class="nes-text is-primary" style="float: right; margin-right: 50px">
+      Copyright B4DEV
     </p>
-    <i class="nes-kirby"></i>
-  </div>
 
-  <div class="main">
+    <div class="header">
+      <i class="nes-kirby"></i>
+      <p class="nes-text is-disabled" style="font-size: 45px">
+        Hi! I'm <span id="engname"></span>
+      </p>
+      <i class="nes-kirby"></i>
+    </div>
 
-    <div class="nes-container is-dark with-title" style="width: 90%">
-      <p class="title">information</p>
+    <div class="main">
+      <div class="nes-container is-dark with-title" style="width: 90%">
+        <p class="title">information</p>
 
-      <div class="inbox">
-        <div class="nes-container is-dark with-title">
-          <p class="title">About Me</p>
-          <div id="aboutBox"></div>
-          <!-- <p>Name : KIM SEONG MIN</p>
+        <div class="inbox">
+          <div class="nes-container is-dark with-title">
+            <p class="title">About Me</p>
+            <div id="aboutBox"></div>
+            <!-- <p>Name : KIM SEONG MIN</p>
                   <p>MBTI : INTP</p>
                   <p>Blog : none</p>
                   <p>Blog : none</p>
                   <p>Blog : none</p>
                   <p>Blog : none</p> -->
 
-          <section class="icon-list">
-            <!-- heart -->
-            <i class="nes-icon is-medium heart"></i>
-            <i class="nes-icon is-medium is-half heart"></i>
-            <i class="nes-icon is-medium is-transparent heart"></i>
-            <i class="nes-icon is-medium heart is-empty"></i>
-          </section>
+            <section class="icon-list">
+              <!-- heart -->
+              <i class="nes-icon is-medium heart"></i>
+              <i class="nes-icon is-medium is-half heart"></i>
+              <i class="nes-icon is-medium is-transparent heart"></i>
+              <i class="nes-icon is-medium heart is-empty"></i>
+            </section>
 
-          <button type="button" class="nes-btn is-primary" style="float: right"
-            onclick="document.getElementById('dialog-dark-rounded').showModal();">
-            Address
-          </button>
+            <button
+              type="button"
+              class="nes-btn is-primary"
+              style="float: right"
+            >
+              Address
+            </button>
 
-          <button type="button" class="nes-btn is-disabled" style="float: right">
-            Message
-          </button>
+            <button
+              type="button"
+              class="nes-btn is-disabled"
+              style="float: right"
+            >
+              Message
+            </button>
+            <button
+              id="modifyBtn"
+              type="button"
+              class="nes-btn primary"
+              style="float: right"
+            >
+              Modify
+            </button>
 
-          <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
-            <form method="dialog">
-              <p class="title">Warning</p>
-              <p>it's a secret</p>
-              <menu class="dialog-menu">
-                <button class="nes-btn">Cancel</button>
-                <button class="nes-btn is-primary">OK</button>
-              </menu>
-            </form>
-          </dialog>
+            <dialog
+              class="nes-dialog is-dark is-rounded"
+              id="dialog-dark-rounded"
+            >
+              <form method="dialog">
+                <p class="title">Warning</p>
+                <p>it's a secret</p>
+                <menu class="dialog-menu">
+                  <button class="nes-btn">Cancel</button>
+                  <button class="nes-btn is-primary">OK</button>
+                </menu>
+              </form>
+            </dialog>
 
-          <!-- Dark and Rounded dialog -->
-          <section>
-            <!-- instagram -->
-            <i class="nes-icon instagram is-medium"></i>
-            <!-- github -->
-            <i class="nes-icon github is-medium"></i>
-            <!-- gmail -->
-            <i class="nes-icon gmail is-medium"></i>
-            <!-- youtube -->
-            <i class="nes-icon youtube is-medium"></i>
-          </section>
+            <!-- Dark and Rounded dialog -->
+            <section>
+              <!-- instagram -->
+              <i class="nes-icon instagram is-medium"></i>
+              <!-- github -->
+              <i class="nes-icon github is-medium"></i>
+              <!-- gmail -->
+              <i class="nes-icon gmail is-medium"></i>
+              <!-- youtube -->
+              <i class="nes-icon youtube is-medium"></i>
+            </section>
+          </div>
+        </div>
+
+        <div class="inbox">
+          <div class="nes-container is-dark with-title">
+            <span class="nes-text is-primary">I</span
+            ><progress
+              class="nes-progress is-primary"
+              value="48"
+              max="100"
+            ></progress>
+            <span class="nes-text is-success">N</span
+            ><progress
+              class="nes-progress is-success"
+              value="71"
+              max="100"
+            ></progress>
+            <span class="nes-text is-warning">T</span
+            ><progress
+              class="nes-progress is-warning"
+              value="41"
+              max="100"
+            ></progress>
+            <span class="nes-text is-error">P</span
+            ><progress
+              class="nes-progress is-error"
+              value="63"
+              max="100"
+            ></progress>
+          </div>
         </div>
       </div>
-
-      <div class="inbox">
-        <div class="nes-container is-dark with-title">
-          <span class="nes-text is-primary">I</span><progress class="nes-progress is-primary" value="48"
-            max="100"></progress>
-          <span class="nes-text is-success">N</span><progress class="nes-progress is-success" value="71"
-            max="100"></progress>
-          <span class="nes-text is-warning">T</span><progress class="nes-progress is-warning" value="41"
-            max="100"></progress>
-          <span class="nes-text is-error">P</span><progress class="nes-progress is-error" value="63"
-            max="100"></progress>
-        </div>
-      </div>
-
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
