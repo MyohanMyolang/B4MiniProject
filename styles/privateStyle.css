@@ -1,108 +1,32 @@
-#aboutWrapper {
-  background-color: #0da9ff;
-  color: white;
-  height: 90dvh;
-  display: flex;
-  justify-content: center;
-  padding-top: 36px;
+body {
+  background-color: black;
+  background-image: url("https://www.sciencetimes.co.kr/wp-content/uploads/2023/06/STScI-01H1CV2FH3KW1W8A4ZVQ6MDHHT.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
-#contBtnWrapper {
-  padding-bottom: 24px;
-  padding-right: 24px;
-  background-color: #0da9ff;
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 8px;
-}
 
-#contBtnWrapper > button {
-  background-color: cyan;
-  padding: 16px;
-  border-color: white;
-  margin: 0px;
-  border: 1px;
-}
-#contBtnWrapper > button:hover {
-  transform: translateY(-4px);
-}
-
-#contBtnWrapper > button:active {
-  transform: translateY(4px);
-}
-
-#aboutBox {
-  border: 2px solid;
-  padding: 24px;
-  height: 80dvh;
-  width: 90dvh;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  border-color: cyan;
-  overflow: hidden;
-}
-
-#leftBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-#userImage {
-  border: 2px solid;
-  border-color: white;
-  border-radius: 100%;
-  width: 30dvh;
-  height: 30dvh;
+.header {
+  padding: 100px;
+  margin: 50px auto 50px 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-#userImageModify:hover {
-  cursor: pointer;
-  box-shadow: 5px 5px 5px gray;
-}
-
-.inputBox {
-  border: 0px;
-  background: none;
-  width: auto;
-  text-align: center;
-  outline: none;
-  color: white;
-}
-
-.inputBoxModify {
-  border: 0px;
-  width: auto;
-  text-align: center;
-}
-
-#aboutDetail {
+.main {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  margin-bottom: 500px;
 }
 
-#aboutDetail > label {
-  font-size: 18px;
-  padding-bottom: 8px;
+.inbox {
+  float: left;
+  padding: 10px;
+  width: 50%;
+  height: 700px;
 }
 
-#aboutDetail > textarea {
-  height: 70px;
-  resize: none;
-  overflow: hidden;
-  margin-bottom: 14px;
-  min-width: 400px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
 
-textarea {
-  resize: none;
-  overflow: hidden;
-}
