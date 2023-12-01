@@ -1,165 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
+    <link rel="stylesheet" href="/styles/privateStyle.css" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
+    <!-- nes.css -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="/styles/privateStyle.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
 
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module">
+      import { getMember, updateMember } from "./js/member.js";
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+      // init
+      const inputBoxList = $(".inputBox");
+      const compBtn = $("#completeModify");
 
-  <!-- nes.css -->
-  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+      let isModify = false;
+      let info = {
+        id: null,
+        data: null,
+      };
 
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
+      let updateData = {};
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+      const qs = new URLSearchParams(location.search);
+      const name = qs.get("name");
+      const isModifyMode = name !== null ? true : false;
 
-  <script type="module">
-    import { getMember, updateMember } from "./js/member.js";
-
-    // init
-    const inputBoxList = $(".inputBox");
-    const compBtn = $("#completeModify");
-
-    let isModify = false;
-    let info = {
-      id: null,
-      data: null,
-    };
-
-    let updateData = {};
-
-    const qs = new URLSearchParams(location.search);
-    const name = qs.get("name");
-    const isModifyMode = name !== null ? true : false;
-
-    (async () => {
-      if (isModifyMode) {
-        info = await getMember("name", name);
-        if (info.data === null) {
-          // alert("데이터가 존재하지 않습니다.")
+      (async () => {
+        if (isModifyMode) {
+          info = await getMember("name", name);
+          if (info.data === null) {
+            alert("데이터가 존재하지 않습니다.");
+            return;
+          }
+          const keys = Object.keys(info.data);
+          keys.forEach((key) => {
+            document.getElementById(key).value = info.data[key];
+          });
+          $("#name").attr("readonly", true);
           return;
         }
-        const keys = Object.keys(info.data);
-        keys.forEach((key) => {
-          document.getElementById(key).value = info.data[key];
-        });
-        $("#name").attr("readonly", true);
-        return;
-      }
-    })();
+      })();
 
-    // end init
+      // end init
 
-    const updateInfo = async () => {
-      if (updateData.name === undefined) return;
-      await updateMember(info.id ?? null, updateData);
-    };
-    compBtn.click(updateInfo);
+      const updateInfo = async () => {
+        if (updateData.name === undefined) return;
+        await updateMember(info.id ?? null, updateData);
+      };
+      compBtn.click(updateInfo);
 
-    const onBlurInput = (e) => {
-      if (e.target.value.trim() === "") return;
-      updateData[e.target.id] = e.target.value;
-    };
-    inputBoxList.blur(onBlurInput);
-  </script>
+      const onBlurInput = (e) => {
+        if (e.target.value.trim() === "") return;
+        updateData[e.target.id] = e.target.value;
+      };
+      inputBoxList.blur(onBlurInput);
+    </script>
+  </head>
 
+  <body>
+    <header id="header">
+      <div id="logoWrapper">
+        <a href="/" id="logo">4Dev Project</a>
+      </div>
+    </header>
 
-</head>
+    <div class="main">
+      <div class="nes-container is-dark with-title" style="width: 90%">
+        <p class="title">SIGN UP</p>
 
+        <div class="inbox">
+          <div class="nes-container is-dark with-title">
+            <p class="title">Enter your information here!</p>
 
+            <container>
+              <div id="aboutWrapper">
+                <div id="aboutBox">
+                  <div id="leftBox">
+                    <div class="nes-field is-inline">
+                      <label for="inline_field">NAME</label>
+                      <input
+                        type="text"
+                        id="name"
+                        value=""
+                        class="nes-input is-success inputBox"
+                        placeholder="name"
+                      />
+                    </div>
 
+                    <div class="nes-field is-inline">
+                      <label for="warning_field">MBTI</label>
+                      <input
+                        type="text"
+                        id="mbti"
+                        value=""
+                        class="nes-input is-warning inputBox"
+                        placeholder="mbti"
+                      />
+                    </div>
 
-
-
-<body>
-
-
-  <header id="header">
-    <div id="logoWrapper">
-      <a href="/" id="logo">4Dev Project</a>
-    </div>
-  </header>
-
-
-  <div class="main">
-
-    <div class="nes-container is-dark with-title" style="width: 90%">
-      <p class="title">SIGN UP</p>
-
-      <div class="inbox">
-        <div class="nes-container is-dark with-title">
-          <p class="title">Enter your information here!</p>
-
-          <container>
-            <div id="aboutWrapper">
-              <div id="aboutBox">
-                <div id="leftBox">
-
-                  <div class="nes-field is-inline">
-                    <label for="inline_field">NAME</label>
-                    <input type="text" id="name" value="" class="nes-input is-success" placeholder="name">
+                    <div class="nes-field is-inline">
+                      <label for="warning_field">PROFILE IMAGE</label>
+                      <input
+                        type="text"
+                        id="profileimg"
+                        value=""
+                        class="nes-input is-warning inputBox"
+                        placeholder="profileimg"
+                      />
+                    </div>
                   </div>
-                  
-                  <div class="nes-field is-inline">
-                    <label for="warning_field">MBTI</label>
-                    <input type="text" id="mbti" value="" class="nes-input is-warning" placeholder="mbti">
-                  </div>
-                  
-                  <div class="nes-field is-inline">
-                    <label for="warning_field">PROFILE IMAGE</label>
-                    <input type="text" id="profileimg" value="" class="nes-input is-warning" placeholder="profileimg">
-                  </div>
-
-                  
                 </div>
               </div>
-            </div>
 
+              <div id="contBtnWrapper">
+                <button
+                  id="completeModify"
+                  type="button"
+                  class="nes-btn is-primary"
+                >
+                  Confirm
+                </button>
+              </div>
 
-            <div id="contBtnWrapper">
-              <button id="completeModify" type="button" class="nes-btn is-primary">Confirm</button>
-            </div>
+              <label class="nes-btn">
+                <span>Select your file</span>
+                <input type="file" />
+              </label>
+            </container>
 
+            <div id="aboutBox"></div>
 
-            <label class="nes-btn">
-              <span>Select your file</span>
-              <input type="file">
-            </label>
-
-          </container>
-
-          <div id="aboutBox"></div>
-
-
-          <button type="button" class="nes-btn is-primary" id="modifyBtn" style="float: right">
-            Modify
-          </button>
-
-
+            <button
+              type="button"
+              class="nes-btn is-primary"
+              id="modifyBtn"
+              style="float: right"
+            >
+              Modify
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-
-
-
-
-</body>
-
-
+  </body>
 </html>

@@ -5,6 +5,7 @@ import { collection, doc, updateDoc ,getDocs, setDoc, query, where,deleteDoc } f
 const memberRef = collection(db, "member");
 
 export const setMember = async (data) => {
+  console.log(data);
   try{
     await setDoc(doc(memberRef), data, { merge: true });
   }
