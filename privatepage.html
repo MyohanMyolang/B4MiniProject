@@ -85,11 +85,11 @@
 
       keys.forEach((key) => {
 
-        if(key === "profileimg") return;
+        if (key === "profileimg") return;
         tempHtml += `<p>${key} : ${info.data[key]}</p>`;
 
       });
-      
+
       $("#aboutBox").append(tempHtml);
       $("#engname").append(info.data.engname);
 
@@ -124,18 +124,69 @@
         <div class="nes-container is-dark with-title">
           <p class="title">About Me</p>
           <div id="aboutBox"></div>
+          <!-- <p>Name : KIM SEONG MIN</p>
+                  <p>MBTI : INTP</p>
+                  <p>Blog : none</p>
+                  <p>Blog : none</p>
+                  <p>Blog : none</p>
+                  <p>Blog : none</p> -->
 
+          <section class="icon-list">
+            <!-- heart -->
+            <i class="nes-icon is-medium heart"></i>
+            <i class="nes-icon is-medium is-half heart"></i>
+            <i class="nes-icon is-medium is-transparent heart"></i>
+            <i class="nes-icon is-medium heart is-empty"></i>
+          </section>
 
-          <button type="button" class="nes-btn is-primary" id="modifyBtn" style="float: right">
-            Modify
+          <button type="button" class="nes-btn is-primary" style="float: right"
+            onclick="document.getElementById('dialog-dark-rounded').showModal();">
+            Address
           </button>
 
+          <button type="button" class="nes-btn is-disabled" style="float: right">
+            Message
+          </button>
 
+          <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded">
+            <form method="dialog">
+              <p class="title">Warning</p>
+              <p>it's a secret</p>
+              <menu class="dialog-menu">
+                <button class="nes-btn">Cancel</button>
+                <button class="nes-btn is-primary">OK</button>
+              </menu>
+            </form>
+          </dialog>
+
+          <!-- Dark and Rounded dialog -->
+          <section>
+            <!-- instagram -->
+            <i class="nes-icon instagram is-medium"></i>
+            <!-- github -->
+            <i class="nes-icon github is-medium"></i>
+            <!-- gmail -->
+            <i class="nes-icon gmail is-medium"></i>
+            <!-- youtube -->
+            <i class="nes-icon youtube is-medium"></i>
+          </section>
         </div>
       </div>
+
+      <div class="inbox">
+        <div class="nes-container is-dark with-title">
+          <span class="nes-text is-primary">I</span><progress class="nes-progress is-primary" value="48"
+            max="100"></progress>
+          <span class="nes-text is-success">N</span><progress class="nes-progress is-success" value="71"
+            max="100"></progress>
+          <span class="nes-text is-warning">T</span><progress class="nes-progress is-warning" value="41"
+            max="100"></progress>
+          <span class="nes-text is-error">P</span><progress class="nes-progress is-error" value="63"
+            max="100"></progress>
+        </div>
+      </div>
+
     </div>
-  </div>
-  </div>
   </div>
 </body>
 
