@@ -74,7 +74,9 @@
       const updateInfo = async () => {
         if (isModifyMode && name === undefined && name === null) return;
         await updateMember(info.id ?? null, updateData);
-        location.href = `/privatepage.html?name=${name}`;
+        location.href = isModifyMode
+          ? `/privatepage.html?name=${name}`
+          : `/privatepage.html?name=${updateData.name}`;
       };
       compBtn.click(updateInfo);
 
